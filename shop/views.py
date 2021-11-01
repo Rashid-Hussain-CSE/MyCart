@@ -5,9 +5,8 @@ from math import ceil
 
 def index(request):
     products = Product.objects.all()
-    n=len(products)
     print(products)
-    params = {'range':range(n),'product' : products}
+    params = {'product' : products}
     return render(request,'shop/index.html',params)
 
 def about(request):

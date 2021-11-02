@@ -42,14 +42,14 @@
             {% for i in product|slice:":"%}
             <div class="col-md-4">
               <div class="card mb-4 box-shadow">
-                <img class="card-img-top" alt="Thumbnail [100%x225]" style="height: 225px; width: 100%; display: block;" src="/media/{{i.image}}" data-holder-rendered="true">
+                <img class="card-img-top" alt="Thumbnail [100%x100]" style="height: 185px; width: 100%; display: block;" src="/media/{{i.image}}" data-holder-rendered="true">
                 <div class="card-body">
                 <h4 class="card-title">{{i.product_name}}</h4>
                   <p class="card-text">{{i.desc}}</p>
                   <div class="d-flex justify-content-between align-items-center">
                     <div class="btn-group">
                       <button type="button" class="btn btn-sm btn-outline-secondary">View Product</button>
-                      <button type="button" class="btn btn-sm btn-outline-secondary">Add to cart</button>
+                      <button id="{{i.id}}" type="button" class="btn btn-sm btn-outline-secondary cart">Add to cart</button>
                     </div>
                     <h4><strong><small class="text">Rs {{i.price}}/-</small></strong></h4>
                   </div>
@@ -61,4 +61,31 @@
           </div>
 </div>
 <!--album ends here-->
+{% endblock %}
+
+{% block js %}
+<script>
+   console.log('working');
+   if(localStorage.getItem('cart')==null){
+     var cart = {};
+   }
+   else{
+     cart = JSON.parse(localStorage.getItem('cart'));
+     document.getElementById('cart').innerHTML = Object.keys(cart).length;
+   }
+   $('.cart').click(function(){
+     var idstr = this.id.toString();
+     if(cart[idstr]!=undefined){
+       cart[idstr] = cart[idstr] + 1;
+     }
+     else{
+       cart[idstr] = 1;
+     }
+     localStorage.setItem('cart', JSON.stringify(cart));
+     document.getElementById('cart').innerHTML = Object.keys(cart).length;
+   });
+   $('#popcart').popover()
+
+   document.getElementById("popcart").setAttribute('data-content','<h6>cart</h6>')
+</script>
 {% endblock %}

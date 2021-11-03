@@ -44,14 +44,16 @@
               <div class="card mb-4 box-shadow">
                 <img class="card-img-top" alt="Thumbnail [100%x100]" style="height: 185px; width: 100%; display: block;" src="/media/{{i.image}}" data-holder-rendered="true">
                 <div class="card-body">
-                <h4 class="card-title">{{i.product_name}}</h4>
+                <h4 class="card-title" id="namepr{{i.id}}">{{i.product_name}}</h4>
                   <p class="card-text">{{i.desc | slice:":30"}}...</p>
                   <div class="d-flex justify-content-between align-items-center">
                     <div class="btn-group">
                       <a href="/shop/products/{{i.id}}">
                         <button id="pv{{i.id}}" type="button" class="btn btn-sm btn-outline-secondary cart">View Product</button>
                       </a>
-                      <button id="pr{{i.id}}" type="button" class="btn btn-sm btn-outline-secondary cart mx-2">Add to cart</button>
+                      <span id="divpr{{i.id}}" class="divpr">
+                        <button id="pr{{i.id}}" type="button" class="btn btn-sm btn-outline-secondary cart mx-2">Add to cart</button>
+                      </span>
                     </div>
                     <h4><strong><small class="text">Rs {{i.price}}/-</small></strong></h4>
                   </div>
@@ -65,5 +67,4 @@
 </div>
 <!--album ends here-->
 {% endblock %}
-
 

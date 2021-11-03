@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from .models import Product
+from .models import Product, Contact
 from django.http import HttpResponse
 from math import ceil
 
@@ -13,6 +13,13 @@ def about(request):
     return render(request,'shop/about.html')
 
 def contact(request):
+    if request.method=="POST":
+        _name = request.POST.get('name','')
+        _email = request.POST.get('email','')
+        _phone = request.POST.get('phone','')
+        _desc = request.POST.get('desc','')
+        contact = Contact(name=_name, email=_email, phone=_phone, desc=_desc)
+        contact.save()
     return render(request,'shop/contact.html')
 
 def tracker(request):

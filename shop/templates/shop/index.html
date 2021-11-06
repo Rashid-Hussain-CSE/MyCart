@@ -125,7 +125,7 @@
       i = i + 1;
     }
 
-    popStr = popStr + "</div> <a href='/shop/checkout'><button class='btn btn-sm btn-outline-secondary' id='checkout'>Checkout</button></a>  <button class='btn btn-sm btn-outline-secondary' onclick='clearCart()' id='clearCart'>Clear Cart</button> "
+    popStr = popStr + "</div> <a href='/shop/checkout'><button class='btn btn-sm btn-outline-primary' id='checkout'>Checkout</button></a>  <button class='btn btn-sm btn-outline-danger' onclick='clearCart()' id='clearCart'>Clear Cart</button> "
     document.getElementById('popcart').setAttribute('data-content',popStr);
     $('#popcart').popover('show');
   }

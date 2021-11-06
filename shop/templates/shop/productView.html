@@ -8,9 +8,8 @@
         <div class = "row" >
             <img src="/media/{{product.image}}" width="300px" height="300px">
         </div>
-        <div class = "row mx-2 my-4 " >
-            <button class="btn btn-primary mx-4">Add to cart</button>
-            <button class="btn btn-primary ">Buy Now</button>
+        <div class = "row my-4" >
+            <a href="/shop/"><button type="button" class="btn btn-outline-primary btn-lg">Go back to home</button></a>
         </div>
     </div>
 
@@ -28,27 +27,17 @@
 
 {% block js %}
 <script>
-   console.log('working');
-   if(localStorage.getItem('cart')==null){
-     var cart = {};
-   }
-   else{
-     cart = JSON.parse(localStorage.getItem('cart'));
-     document.getElementById('cart').innerHTML = Object.keys(cart).length;
-   }
-   $('.cart').click(function(){
-     var idstr = this.id.toString();
-     if(cart[idstr]!=undefined){
-       cart[idstr] = cart[idstr] + 1;
-     }
-     else{
-       cart[idstr] = 1;
-     }
-     localStorage.setItem('cart', JSON.stringify(cart));
-     document.getElementById('cart').innerHTML = Object.keys(cart).length;
-   });
-   $('#popcart').popover()
-
-   document.getElementById("popcart").setAttribute('data-content','<h6>cart</h6>')
+if (localStorage.getItem('cart') == null) {
+    var cart = {};
+} else {
+    cart = JSON.parse(localStorage.getItem('cart'));
+}
+console.log(cart);
+var sum = 0;
+for (item in cart) {
+    let qty = cart[item][0];
+    sum = sum + qty;
+}
+document.getElementById('cart').innerHTML = sum;
 </script>
 {% endblock %}
